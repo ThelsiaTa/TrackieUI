@@ -90,7 +90,7 @@ const Danger = () => {
 
       <div className="py-4 px-4">
         <h3 className="text-lg font-semibold">Delete Account</h3>
-        <p className="text-sm font-normal">Permanently remove your Personal Account and all of its contents from the Confessay platform. This action is not reversible, so please continue with caution.</p>
+        <p className="text-sm font-normal">Permanently remove your Personal Account and all of its contents from the Trackie platform. This action is not reversible, so please continue with caution.</p>
         <button className="text-white bg-red-500 py-1 px-4 rounded-lg text-end mt-5" onClick={() => setShowConfirmDelete(true)}>
           Terminate Account
         </button>

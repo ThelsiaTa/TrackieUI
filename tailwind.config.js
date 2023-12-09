@@ -14,6 +14,8 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: 'Inter',
+        display: ["var(--font-sf)", "system-ui", "sans-serif"],
+        default: ["var(--font-inter)", "system-ui", "sans-serif"],        
       },
       backgroundImage: {
         'bg-img-1': "url('../img/bg-img-1.png')",

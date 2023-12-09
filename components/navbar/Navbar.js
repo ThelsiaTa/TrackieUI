@@ -5,7 +5,7 @@ import { Hamburger } from './Hamburger';
 import Image from "next/image";
 
 // import logo image
-import Logo from '.././../img/logo.png'
+import Logo from '../../img/vercel.png'
 
 
 const Navbar = () => {
@@ -14,27 +14,23 @@ const Navbar = () => {
         <nav className="bg-white fixed bg-opacity-50 backdrop-blur-lg md:mt-0 w-full mx-auto z-50">
         <div className="hidden items-center md:visible md:flex md:justify-between px-10 py-2">
         <div className="hover:cursor">
-            <ul className="flex items-center">
-              <Link legacyBehavior href="/Frontpage">
-                <Image src={Logo} width={80} alt="image"/>
+            <ul className="flex items-center gap-3">
+              <Link legacyBehavior href="/dashboard">
+                <Image src={Logo} width={20} alt="image"/>
               </Link>
-              <Link legacyBehavior href="/Frontpage">
-                <a className="font-thin text-2xl text-black tracking-tighter font-serif">Confessay</a>          
+              <Link legacyBehavior href="/dashboard">
+                <a className="font-display text-2xl text-black tracking-tighter font-medium	">Trackie</a>          
               </Link>
             </ul>
         </div>
     
         <div className="flex gap-4 justify-center items-center">
                 <div className="hover:underline text-sm md:text-base font-semibold">
-                <Link href="/Frontpage" legacyBehavior>
-                    <a>Home</a>
+                <Link href="/dashboard" legacyBehavior>
+                    <a>Dashboard</a>
                 </Link>
                 </div>
-                <div className="hover:underline text-sm md:text-base font-semibold">
-                <Link href="/About" legacyBehavior>
-                    <a>About</a>
-                </Link>
-                </div>
+
 
                 <div className="hover:underline text-sm md:text-base font-semibold">
                 {!user && (
@@ -44,8 +40,8 @@ const Navbar = () => {
                 )}
                 {user && (
                     <div className="hover:underline text-sm md:text-base font-semibold">
-                    <Link href="/Post" legacyBehavior>
-                        <a>Confess</a>
+                    <Link href="/input" legacyBehavior>
+                        <a>Input</a>
                     </Link>
                     </div>
                 )}
@@ -53,9 +49,9 @@ const Navbar = () => {
                 <div className="hover:underline text-sm md:text-base font-semibold">
                     {user && (
                         <div className="flex items-center gap-4">
-                        <Link href="/Profile" legacyBehavior>
-                            <a>Profile</a>
-                        </Link>
+                            <Link href="/Profile">
+                                <img className="w-8 h-8 rounded-full cursor-pointer" src={user.photoURL} />
+                            </Link>  
                         </div>
                     )}
                 </div> 
@@ -65,11 +61,11 @@ const Navbar = () => {
     
         <div className="flex justify-between md:mt-3 md:hidden w-full max-w-3xl mx-auto px-5 md:px-10 py-5 items-center hover:cursor">
             <ul className="flex items-center">
-                <Link legacyBehavior href="/Frontpage">
-                    <Image src={Logo} width={80} alt="image"/>
+                <Link legacyBehavior href="/dashboard">
+                    <Image src={Logo} width={30} alt="image"/>
                 </Link>
-                <Link legacyBehavior href="/Frontpage">
-                    <p className="font-thin text-2xl text-black tracking-tighter font-serif">Confessay</p>          
+                <Link legacyBehavior href="/dashboard">
+                    <p className="font-display text-2xl text-black tracking-tighter">Trackie</p>          
                 </Link>
             </ul>             
             <Hamburger />

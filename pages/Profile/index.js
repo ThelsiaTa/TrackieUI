@@ -1,66 +1,133 @@
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect, useState } from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import Head from "next/head";
-import Link from "next/link";
+import { collection, deleteDoc, doc, onSnapshot,query, where,} from "firebase/firestore";
+import DeleteAccount from "../../components/DeleteAccount";
+import { useRouter } from "next/router";
 
-import { AiFillBell, AiFillMessage, AiFillSetting } from 'react-icons/ai'
+//
+import { getAuth, updateProfile } from "firebase/auth";
+import { auth, db } from "../../utils/firebase";
 
-export default function Home() {
+const Setting = () => {
+  const [nickname, setNickname] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const [user, loading] = useAuthState(auth);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [posts, setPosts] = useState([]);
+  const route = useRouter();
+
+  const getData = async (searchQuery) => {
+    if (loading) {
+      return;
+    }
+    if (!user) {
+      return route.push("/auth/Login");
+    }
+  
+    const collectionRef = collection(db, "posts");
+    const q = query(collectionRef, where("user", "==", user.uid));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      let filteredPosts = snapshot.docs
+        .map((doc) => ({ ...doc.data(), id: doc.id }))
+        .filter((post) => {
+          const subject = post.subject && post.subject.toLowerCase();
+          const description = post.description && post.description.toLowerCase();
+          const query = searchQuery && searchQuery.toLowerCase();
+          return (subject && subject.includes(query)) || (description && description.includes(query));
+        });
+      setPosts(filteredPosts);
+    });
+    return unsubscribe;
+  };  
+  // Get users data
+  useEffect(() => {
+    getData(searchQuery);
+  }, [user, loading, searchQuery]);
+
+  const handleSaveChanges = async () => {
+    // Update the user's display name and photo URL in Firebase
+    const profileUpdates = {};
+    if (nickname.trim() !== "") {
+      profileUpdates.displayName = nickname;
+    }
+    if (photoURL.trim() !== "") {
+      profileUpdates.photoURL = photoURL;
+    }
+    updateProfile(auth.currentUser, profileUpdates)
+      .then(() => {
+        // Display a success message and redirect the user
+        toast.success("Profile updated successfully!", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1500,
+        });
+        return route.push("/Profile");
+      })
+      .catch((error) => {
+        toast.error(error.message, {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 5000,
+        });
+      });
+  };  
+  
   return (
-      <div className="md:p-5 w-full max-w-3xl mx-auto pt-20">
+    <div className="md:px-5 md:py-30 w-full max-w-2xl mx-auto pt-20">
       <Head>
-        <title>Confessay</title>
+        <title>Trackie</title>
       </Head>
-
-      
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:mt-20">
-
-        
-        <div className="max-w-sm p-6 border border-gray-200 bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg hover:shadow-xl duration-1000">
-        <Link href="/Profile/YourPost">
-            <AiFillMessage className="w-10 h-10 mb-2 text-black"/>
-            <span>
-                <h5 className="mb-2 text-2xl font-semibold tracking-tight text-black">Your Confessions</h5>
-            </span>
-            <p className="mb-3 font-normal text-black">An organised collection of all your confession posts and to edit your comments or posts</p>
-            <span className="inline-flex items-center text-blue-600 hover:underline">
-                Click
-                <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
-            </span>
-        </Link>    
+      <div>
+      <h1 className="text-start font-semibold text-5xl mb-10 md:mb-20 text-black">Setting</h1>
+      {posts.length > 0 && (
+        <div className="flex items-center gap-1 md:gap-2">
+        <div className="flex justify-start my-1">
+            {user && (
+              <div>
+                <img
+                  className="w-10 h-10 md:w-16 md:h-16 rounded-full object-cover cursor-pointer mr-2"
+                  src={user.photoURL}
+                />
+              </div>
+            )}
         </div>
-               
-        <div className="max-w-sm p-6 border-gray-200 bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg hover:shadow-xl duration-1000">
-        <Link href="/Profile/Notification">
-            <AiFillBell className="w-10 h-10 mb-2 text-black"/>
-            <span>
-                <h5 className="mb-2 text-2xl font-semibold tracking-tight text-black">Notifications</h5>
-            </span>
-            <p className="mb-3 font-normal text-black">Get notified about new updates and any comments that mention you.</p>
-            <span href="#" className="inline-flex items-center text-blue-600 hover:underline">
-                Click
-                <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
-            </span>
-        </Link>
-        </div>
-        
-      </div>
-
-      <div className="flex justify-center mt-10">
-      <div className="max-w-sm p-6 border-gray-200 bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg hover:shadow-xl duration-1000">
-      <Link href="/Profile/setting">
-            <AiFillSetting className="w-10 h-10 mb-2 text-black"/>
-            <span>
-                <h5 className="mb-2 text-2xl font-semibold tracking-tight text-black">Setting</h5>
-            </span>
-            <p className="mb-3 font-normal text-black">To sign out or terminate your Confessay account.</p>
-            <span href="#" className="inline-flex items-center text-blue-600 hover:underline">
-                Click
-                <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
-            </span>
-        </Link>
-      </div>
+        <div>
+          {user && (
+            <div>
+              <h1 className="text-start font-medium text-lg md:text-2xl text-black">
+                {user.displayName}
+              </h1>
+              <p className="text-start font-normal text-sm md:text-md text-gray-600">{user.email}</p> 
+            </div>
+          )}              
+        </div>    
+        </div>        
+      )}      
       
+      <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-lg my-10 hover:shadow-xl duration-1000">
+        {user && (
+        <div className="mt-10 mb-5 py-4 px-4">
+          <h3 className="text-lg font-semibold">Basic informations</h3>
+          {user.providerData.length > 0 ? (
+            <p className="text-sm font-normal my-1">Linked providers: {user.providerData.map((provider) => provider.providerId).join(', ')}</p>
+          ) : (
+            <p className="text-sm font-normal my-1">No linked providers</p>
+          )}
+          {user.metadata && (
+            <>
+              <p className="text-sm font-normal my-1">Last signed in: {new Date(user.metadata.lastSignInTime).toLocaleDateString()}</p>
+              <p className="text-sm font-normal my-1">Account created: {new Date(user.metadata.creationTime).toLocaleDateString()}</p>
+            </>
+          )}
+        </div>
+        )}
       </div>
 
+      <DeleteAccount />
       </div>
+    </div>
   );
-}
+};
+
+export default Setting;

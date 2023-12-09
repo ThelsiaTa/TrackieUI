@@ -76,7 +76,7 @@ const Setting = () => {
   return (
     <div className="md:px-5 md:py-30 w-full max-w-2xl mx-auto pt-20">
       <Head>
-        <title>Confessay</title>
+        <title>Trackie</title>
       </Head>
       <div>
       <h1 className="text-start font-semibold text-5xl mb-10 md:mb-20 text-black">Setting</h1>
