@@ -32,7 +32,7 @@ node_modules/
 # Editor and IDE files
 .vscode/
 .idea/
-
+ 
 # Miscellaneous
 .DS_Store
 npm-debug.log*
