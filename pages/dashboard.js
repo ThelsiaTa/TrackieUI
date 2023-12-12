@@ -19,11 +19,11 @@ const dashboard = () => {
       <main className='min-h-screen'>
         <Header />
         <TopCards />
-        <CropChart />
         <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
           <BarChart />
           <RecentOrders />          
-        </div>
+        </div>        
+        <CropChart />
       </main>
       <div className="flex flex-row items-center justify-between py-10">
         <a
