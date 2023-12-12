@@ -11,7 +11,7 @@ import Logo from '../../img/vercel.png'
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
     return (
-        <nav className="bg-white fixed bg-opacity-50 backdrop-blur-lg md:mt-0 w-full mx-auto z-50">
+        <nav className="bg-white fixed bg-opacity-50 backdrop-blur-lg md:mt-0 w-full mx-auto z-50 shadow">
         <div className="hidden items-center md:visible md:flex md:justify-between px-10 py-2">
         <div className="hover:cursor">
             <ul className="flex items-center gap-3">

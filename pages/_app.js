@@ -7,10 +7,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 function MyApp({ Component, pageProps }) {
   return(
     <ChakraProvider>
-      <Layout>
         <ToastContainer limit={1}/>
         <Component {...pageProps} />
-      </Layout>
     </ChakraProvider>
   );
 
