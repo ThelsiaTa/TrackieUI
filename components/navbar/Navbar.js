@@ -26,26 +26,26 @@ const Navbar = () => {
     
         <div className="flex gap-4 justify-center items-center">
                 <div className="hover:underline text-sm md:text-base font-semibold">
-                <Link href="/dashboard" legacyBehavior>
-                    <a>Dashboard</a>
-                </Link>
-                </div>
-
-
-                <div className="hover:underline text-sm md:text-base font-semibold">
                 {!user && (
                     <Link href={"/auth/Login"} legacyBehavior>
                         <a>Login</a>
                     </Link>
                 )}
                 {user && (
+                <div className="hover:underline text-sm md:text-base font-semibold">
+                    <Link href="/dashboard" legacyBehavior>
+                        <a>Dashboard</a>
+                    </Link>
+                </div> 
+                )}                
+                </div>
+                {user && (
                     <div className="hover:underline text-sm md:text-base font-semibold">
                     <Link href="/input" legacyBehavior>
                         <a>Input</a>
                     </Link>
                     </div>
-                )}
-                </div>                
+                )}                
                 <div className="hover:underline text-sm md:text-base font-semibold">
                     {user && (
                         <div className="flex items-center gap-4">
