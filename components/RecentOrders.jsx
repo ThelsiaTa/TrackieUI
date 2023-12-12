@@ -1,6 +1,6 @@
 import React from 'react';
 import { data } from '../data/data.js';
-import { FaShoppingBag } from 'react-icons/fa';
+import { RiTruckFill } from 'react-icons/ri';
 
 const RecentOrders = () => {
   return (
@@ -12,8 +12,8 @@ const RecentOrders = () => {
             key={id}
             className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer'
           >
-            <div className='bg-purple-100 rounded-lg p-3'>
-              <FaShoppingBag className='text-purple-800' />
+            <div className='bg-yellow-300 rounded-lg p-3'>
+              <RiTruckFill className='text-yellow-900' />
             </div>
             <div className='pl-4'>
               <p className='text-gray-800 font-bold'>${order.total}</p>
