@@ -22,11 +22,6 @@ export const MobileNav = ({ open, setOpen }) => {
               <a onClick={handleLinkClick}>Home</a>
             </Link>
           </div>
-          <div className="py-4 hover:underline text-sm md:text-base font-semibold">
-            <Link href="/About" legacyBehavior>
-              <a onClick={handleLinkClick}>About</a>
-            </Link>
-          </div>
   
             {!user && (
               <div className="py-4 hover:underline text-sm md:text-base font-semibold">              
