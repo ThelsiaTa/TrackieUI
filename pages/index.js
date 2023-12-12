@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
-import { FaTractor } from 'react-icons/fa'
+import { FaTractor } from 'react-icons/fa';
+import Layout from '../components/Layout'
 
 // import image
 const GiCash = dynamic(() => import('react-icons/gi').then((module) => module.GiCash), { ssr: false });
@@ -11,7 +12,8 @@ const FaRegLightbulb = dynamic(() => import('react-icons/fa').then((module) => m
 
 export default function Home() {
     return (
-        <div className="md:px-5 w-full max-w-3xl mx-auto pt-20">
+      <Layout isWhiteBackground={false}>
+        <div className="md:px-5 w-full max-w-5xl mx-auto pt-20 pb-10 ">
             <Head>
             <title>Trackie</title>
             </Head>            
@@ -30,7 +32,7 @@ export default function Home() {
             </Link>   
 
             <div className="mx-auto grid justify-center gap-4 md:grid-cols-2 pt-20">
-              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow-md">
+              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow">
                 <div className="flex flex-col justify-between rounded-md p-6">
                   <span className="text-2xl md:text-4xl lg:text-6xl mb-2"><GiCash /></span>
                   <div className="space-y-2">
@@ -39,7 +41,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow-md">
+              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow">
                 <div className="flex flex-col justify-between rounded-md p-6">
                   <span className="text-2xl md:text-4xl lg:text-6xl mb-2"><GiCycle /></span>
                   <div className="space-y-2">
@@ -48,7 +50,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow-md">
+              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow">
                 <div className="flex flex-col justify-between rounded-md p-6">
                   <span className="text-2xl md:text-4xl lg:text-6xl mb-2"><FaBrain /></span>
                   <div className="space-y-2">
@@ -57,7 +59,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow-md">
+              <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow">
                 <div className="flex flex-col justify-between rounded-md p-6">
                   <span className="text-2xl md:text-4xl lg:text-6xl mb-2"><FaRegLightbulb /></span>
                   <div className="space-y-2">
@@ -67,7 +69,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
         </div>
+      </Layout>        
     );
 }
