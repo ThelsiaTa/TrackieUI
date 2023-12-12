@@ -47,7 +47,7 @@ const BarChart = () => {
             },
             title: {
                 display: true,
-                text: 'Monthly revenue 2022'
+                text: 'Monthly revenue 2023'
             }
         },
         maintainAspectRatio: false,
