@@ -17,7 +17,6 @@ const input = () => {
         <title>Trackie</title>
       </Head>
       <main className='min-h-screen'>
-        <Header />
         <TopCards />
         <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
           <BarChart />

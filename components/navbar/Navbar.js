@@ -37,7 +37,7 @@ const Navbar = () => {
                         <a>Dashboard</a>
                     </Link>
                 </div> 
-                )}                
+                )}
                 </div>
                 {user && (
                     <div className="hover:underline text-sm md:text-base font-semibold">
