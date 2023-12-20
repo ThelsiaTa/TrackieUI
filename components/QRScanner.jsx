@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserMultiFormatReader } from '@zxing/library';
+import { useEffect, useRef } from 'react';
+import { BrowserMultiFormatReader, NotFoundException } from '@zxing/library';
 
 const QRScanner = () => {
-  const [result, setResult] = useState('');
-  const [reader, setReader] = useState(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
-
-    setReader(codeReader);
-
-    codeReader.getVideoInputDevices()
+    codeReader.listVideoInputDevices()
       .then((videoInputDevices) => {
         if (videoInputDevices.length > 0) {
-          codeReader.decodeFromVideoDevice(videoInputDevices[0].deviceId, 'video', (result, err) => {
+          const constraints = { video: { deviceId: videoInputDevices[0].deviceId } };
+          codeReader.decodeFromConstraints(constraints, videoRef.current, (result, error) => {
             if (result) {
-              setResult(result.getText());
-            }
-            if (err) {
-              console.error(err);
+              alert(`QR Code detected: ${result.getText()}`);
+            } else {
+              if (!(error instanceof NotFoundException)) {
+                console.error(error);
+              }
             }
           });
         } else {
@@ -35,9 +33,8 @@ const QRScanner = () => {
   }, []);
 
   return (
-    <div>
-      <video id="video" style={{ width: '100%' }}></video>
-      <p>{result}</p>
+    <div className="flex justify-center items-center h-screen">
+      <video ref={videoRef} style={{ width: '100%', maxWidth: '400px' }} />
     </div>
   );
 };
