@@ -6,26 +6,19 @@ const QRScanner = () => {
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
-    codeReader.listVideoInputDevices()
-      .then((videoInputDevices) => {
-        if (videoInputDevices.length > 0) {
-          const constraints = { video: { deviceId: videoInputDevices[0].deviceId } };
-          codeReader.decodeFromConstraints(constraints, videoRef.current, (result, error) => {
-            if (result) {
-              alert(`QR Code detected: ${result.getText()}`);
-            } else {
-              if (!(error instanceof NotFoundException)) {
-                console.error(error);
-              }
-            }
-          });
-        } else {
-          console.error('No video input devices found');
+
+    // Specify facingMode to use the back camera
+    const constraints = { video: { facingMode: 'environment' } };
+
+    codeReader.decodeFromConstraints(constraints, videoRef.current, (result, error) => {
+      if (result) {
+        alert(`QR Code detected: ${result.getText()}`);
+      } else {
+        if (!(error instanceof NotFoundException)) {
+          console.error(error);
         }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      }
+    });
 
     return () => {
       codeReader.reset();
