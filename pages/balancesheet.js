@@ -9,7 +9,7 @@ import Income from '../components/IncomeStatement/Income';
 
 // income income and expenses
 
-const IncomeStatement = () => {
+const BalanceSheet = () => {
   // Create a state with all the posts
   return (
     <Layout isWhiteBackground={true}>
@@ -53,4 +53,4 @@ const IncomeStatement = () => {
   );
 }
 
-export default IncomeStatement;
+export default BalanceSheet;
