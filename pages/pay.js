@@ -3,24 +3,31 @@
 
 import Head from 'next/head';
 import QRScanner from '../components/QRScanner';
+import Layout from '../components/Layout';
+import NETS from '../img/financelogo/NETS.jpg';
+import DuitNow from '../img/financelogo/DuitNow.jpg';
+import Image from 'next/image';
 
 export default function Pay() {
   return (
-    <div>
+    <Layout isWhiteBackground={true}>
       <Head>
-        <title>QR Code Scanner</title>
-        <meta name="description" content="QR Code Scanner using Next.js" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Your Bank App</title>
       </Head>
-
-      <main>
-        <h1>QR Code Scanner</h1>
+      <main className='min-h-screen'>
+        <div className="text-center mt-8 mb-4">
+          <p className="text-lg font-semibold">Supported QR Codes</p>
+          <div className="flex justify-center items-center space-x-4">
+            <div className="relative w-16 h-16">
+              <Image src={NETS} alt="NETS Logo" layout="fill" objectFit="contain" />
+            </div>
+            <div className="relative w-16 h-16">
+              <Image src={DuitNow} alt="DuitNow Logo" layout="fill" objectFit="contain" />
+            </div>
+          </div>
+        </div>
         <QRScanner />
       </main>
-
-      <footer>
-        <p>Powered by Next.js</p>
-      </footer>
-    </div>
+    </Layout>       
   );
 }

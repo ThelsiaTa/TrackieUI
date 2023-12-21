@@ -1,1 +1,1 @@
-Link: trackie-ui.vercel.app
+Link: trackieapp.vercel.app
