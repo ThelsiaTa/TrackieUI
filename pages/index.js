@@ -31,6 +31,7 @@ export default function Home() {
                 </button>            
             </Link>   
 
+            <div className="mx-1">
             <div className="mx-auto grid justify-center gap-4 md:grid-cols-2 pt-20">
               <div className="relative overflow-hidden rounded-lg border bg-white p-2 shadow">
                 <div className="flex flex-col justify-between rounded-md p-6">
@@ -68,6 +69,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
         </div>
       </Layout>        
