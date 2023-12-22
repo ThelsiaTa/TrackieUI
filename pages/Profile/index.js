@@ -81,7 +81,7 @@ const Setting = () => {
         <title>Trackie</title>
       </Head>
       <div>
-        <h1 className="text-start font-semibold text-5xl mb-10 md:mb-20 text-black">Setting</h1>        
+        <h1 className="text-start font-semibold text-5xl mb-10 md:mb-20 text-black px-4">Setting</h1>        
         <DeleteAccount />
       </div>
     </div>
