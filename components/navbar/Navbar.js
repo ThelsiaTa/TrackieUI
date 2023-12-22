@@ -5,7 +5,7 @@ import { Hamburger } from './Hamburger';
 import Image from "next/image";
 
 // import logo image
-import Logo from '../../img/vercel.png'
+import Logo from '../../img/vercel.jpg'
 
 
 const Navbar = () => {
@@ -59,13 +59,13 @@ const Navbar = () => {
     
         </div>
     
-        <div className="flex justify-between md:mt-3 md:hidden w-full max-w-3xl mx-auto px-5 md:px-10 py-5 items-center hover:cursor">
-            <ul className="flex items-center">
+        <div className="flex justify-between md:mt-3 md:hidden w-full max-w-3xl mx-auto px-5 md:px-10 py-2 items-center hover:cursor">
+            <ul className="flex items-center gap-1">
                 <Link legacyBehavior href="/dashboard">
-                    <Image src={Logo} width={30} alt="image"/>
+                    <Image src={Logo} width={20} alt="image"/>
                 </Link>
                 <Link legacyBehavior href="/dashboard">
-                    <p className="font-display text-2xl text-black tracking-tighter">Trackie</p>          
+                    <p className="font-display text-xl text-black tracking-tighter">Trackie</p>          
                 </Link>
             </ul>             
             <Hamburger />

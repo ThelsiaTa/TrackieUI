@@ -25,7 +25,7 @@ const Login = () => {
   const GoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      route.push("/input");
+      route.push("/dashboard");
   
       toast.success("Signed in 🤙 ", {
         position: toast.POSITION.TOP_CENTER,
@@ -45,7 +45,7 @@ const Login = () => {
     if (!route || !route.push) return;
     
     if (user) {
-      route.push("/input");
+      route.push("/dashboard");
     }
   }, [user]);
 
@@ -54,17 +54,19 @@ const Login = () => {
       <Head>
         <title>Trackie</title>
       </Head>
-      <div className="shadow-xl mt-32 p-10 text-gray-700 rounded-lg w-full max-w-3xl mx-auto">
+      <div className="mt-32 p-4 md:p-10 text-gray-700 rounded-lg w-full max-w-2xl mx-auto">
         <div>
-        <h2 className="text-2xl font-semibold">Join Today</h2>
-        <div className="py-4">
-          <h3 className="py-4">Sign in with one of the providers</h3>
+        <h2 className="text-2xl font-semibold text-center">Join Today</h2>
+        <div className="">
+          <h3 className="py-4 text-center">Enter your email below to create your account</h3>
           <button
             onClick={GoogleLogin}
-            className="text-white bg-gray-700 w-full rounded-lg flex align-middle p-4 gap-2"
+            className="text-white bg-black w-full rounded-lg flex justify-center align-middle p-4 text-center"
           >
-            <AiOutlineGoogle className="text-2xl" />
-            Sign in with Google
+            <div className="flex justify-center gap-2">
+              <AiOutlineGoogle className="text-2xl" />
+              <p>Sign in with Google</p> 
+            </div>
           </button>
         </div>
         </div>
