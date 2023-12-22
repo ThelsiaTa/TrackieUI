@@ -67,7 +67,7 @@ const Navbar = () => {
                 <Link legacyBehavior href="/dashboard">
                     <p className="font-display text-xl text-black tracking-tighter">Trackie</p>          
                 </Link>
-            </ul>             
+            </ul>         
             <Hamburger />
         </div>
     
