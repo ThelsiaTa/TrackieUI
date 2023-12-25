@@ -64,7 +64,7 @@ const ConfirmPayment = () => {
         <div className='flex justify-center my-2'>
           <button
             onClick={handleConfirm}        
-            className="bg-black text-white w-full md:w-2/3 rounded-lg p-3 hover:bg-cyan-500 transition"
+            className="bg-black hover:bg-gray-700 text-white w-full md:w-2/3 rounded-lg p-3 transition"
           >
             Confirm Payment
           </button>

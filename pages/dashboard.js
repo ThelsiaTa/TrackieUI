@@ -1,6 +1,5 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
-
-// import image
 import Header from '../components/Header';
 import TopCards from '../components/TopCards';
 import BarChart from '../components/BarChart';
@@ -8,9 +7,23 @@ import RecentOrders from '../components/RecentOrders';
 import Layout from '../components/Layout';
 import CropChart from '../components/CropChart';
 
+const Dashboard = () => {
+  const [topCardsData, setTopCardsData] = useState(null);
 
-const dashboard = () => {
-  // Create a state with all the posts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://dummyjson.com/products');
+        const data = await response.json();
+        setTopCardsData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Layout isWhiteBackground={true}>
       <Head>
@@ -18,11 +31,11 @@ const dashboard = () => {
       </Head>
       <main className='min-h-screen'>
         <Header />
-        <TopCards />
+        {topCardsData && <TopCards data={topCardsData} />}
         <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
           <BarChart />
-          <RecentOrders />          
-        </div>        
+          <RecentOrders />
+        </div>
         <CropChart />
       </main>
       <div className="flex flex-row items-center justify-between py-10">
@@ -47,8 +60,8 @@ const dashboard = () => {
           </svg>
         </a>
       </div>
-    </Layout>       
+    </Layout>
   );
-}
+};
 
-export default dashboard;
+export default Dashboard;

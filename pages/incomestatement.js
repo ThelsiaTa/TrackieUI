@@ -23,6 +23,7 @@ const IncomeStatement = () => {
         </div>
         <TopISCards />
         <div className='p-4 grid md:grid-cols-2 grid-cols-1 gap-4'>
+          {/*create an edit feature to input manually*/}
           <Income />
           <Expenses />          
         </div>
