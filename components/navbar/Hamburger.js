@@ -40,6 +40,15 @@ export const MobileNav = ({ open, setOpen }) => {
               </div>
             )}
           </div>
+          <div className="py-4 hover:underline text-sm md:text-base font-semibold">
+            {user && (
+              <div className="flex items-center gap-4">
+                <Link href="/pay" legacyBehavior>
+                  <a onClick={handleLinkClick}>Pay</a>
+                </Link>              
+              </div>
+            )}
+          </div>          
         </div>
       </div>
     );
