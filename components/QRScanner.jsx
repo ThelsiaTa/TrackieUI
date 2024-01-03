@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BrowserMultiFormatReader, NotFoundException, BarcodeFormat } from '@zxing/library';
+import { useRouter } from 'next/router';
 
 const QRScanner = () => {
   const videoRef = useRef(null);
   const [scanning, setScanning] = useState(true);
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
@@ -22,6 +24,7 @@ const QRScanner = () => {
       if (result) {
         setScanning(false);
         setMessage(`QR Code detected: ${result.getText()}`);
+        router.push('/confirmpayment');
         // Handle the result as needed (e.g., send to server, navigate, etc.)
       } else {
         if (!(error instanceof NotFoundException)) {

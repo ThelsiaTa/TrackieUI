@@ -18,7 +18,7 @@ const BalanceSheet = () => {
       </Head>
       <main className='min-h-screen'>
         <div className='flex justify-between px-4 pt-4'>
-          <h2 className='text-2xl font-semibold'>Income Statement</h2>
+          <h2 className='text-2xl font-semibold'>Balance Sheet</h2>
           <div></div>
         </div>
         <TopISCards />

@@ -45,7 +45,14 @@ const Navbar = () => {
                         <a>Input</a>
                     </Link>
                     </div>
-                )}                
+                )}
+                {user && (
+                    <div className="hover:underline text-sm md:text-base font-semibold">
+                    <Link href="/pay" legacyBehavior>
+                        <a>Pay</a>
+                    </Link>
+                    </div>
+                )}                           
                 <div className="hover:underline text-sm md:text-base font-semibold">
                     {user && (
                         <div className="flex items-center gap-4">
