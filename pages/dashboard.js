@@ -7,32 +7,53 @@ import RecentOrders from '../components/RecentOrders';
 import Layout from '../components/Layout';
 import CropChart from '../components/CropChart';
 
+import { getDatabase, ref, child, get } from 'firebase/database';
+
 const Dashboard = () => {
   const [topCardsData, setTopCardsData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      const dbRef = ref(getDatabase());
+
       try {
-        const response = await fetch('https://dummyjson.com/products');
-        const data = await response.json();
-        setTopCardsData(data);
+        const snapshot = await get(child(dbRef, '/'));
+
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const keys = Object.keys(data);
+          const latestKey = keys.reduce((prevKey, currentKey) =>
+            currentKey > prevKey ? currentKey : prevKey
+          );
+
+          setTopCardsData(data[latestKey]);
+        } else {
+          console.log('No data available');
+        }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error(error);
+        setError('Error fetching data');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs once when the component mounts
 
   return (
     <Layout isWhiteBackground={true}>
       <Head>
         <title>Trackie</title>
       </Head>
-      <main className='min-h-screen'>
+      <main className="min-h-screen">
         <Header />
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
         {topCardsData && <TopCards data={topCardsData} />}
-        <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+        <div className="p-4 grid md:grid-cols-3 grid-cols-1 gap-4">
           <BarChart />
           <RecentOrders />
         </div>
