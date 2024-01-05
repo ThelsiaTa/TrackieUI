@@ -7,7 +7,6 @@ import Image from "next/image";
 // import logo image
 import Logo from '../../img/vercel.jpg'
 
-
 const Navbar = () => {
     const [user, loading] = useAuthState(auth);
     return (
@@ -34,7 +33,7 @@ const Navbar = () => {
                 {user && (
                 <div className="hover:underline text-sm md:text-base font-semibold">
                     <Link href="/dashboard" legacyBehavior>
-                        <a>Dashboard</a>
+                        <a>Home</a>
                     </Link>
                 </div> 
                 )}
@@ -45,14 +44,7 @@ const Navbar = () => {
                         <a>Input</a>
                     </Link>
                     </div>
-                )}
-                {user && (
-                    <div className="hover:underline text-sm md:text-base font-semibold">
-                    <Link href="/pay" legacyBehavior>
-                        <a>Pay</a>
-                    </Link>
-                    </div>
-                )}                           
+                )}                        
                 <div className="hover:underline text-sm md:text-base font-semibold">
                     {user && (
                         <div className="flex items-center gap-4">

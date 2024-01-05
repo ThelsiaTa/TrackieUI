@@ -35,7 +35,7 @@ export const MobileNav = ({ open, setOpen }) => {
             {user && (
               <div className="flex items-center gap-4">
                 <Link href="/Profile" legacyBehavior>
-                  <a onClick={handleLinkClick}>Your Profile</a>
+                  <a onClick={handleLinkClick}>Setting</a>
                 </Link>              
               </div>
             )}
