@@ -2,12 +2,12 @@ import Head from 'next/head';
 
 // import image
 import Header from '../components/Header';
-import TopISCards from '../components/IncomeStatement/TopISCards';
+import TopBSCards from '../components/BalanceSheet/TopBSCards';
 import Layout from '../components/Layout';
-import Expenses from '../components/IncomeStatement/Expenses';
-import Income from '../components/IncomeStatement/Income';
+import Liabilities from '../components/BalanceSheet/Liabilities';
+import Assets from '../components/BalanceSheet/Assets';
 
-// income income and expenses
+// assets liabilities and net worth
 
 const BalanceSheet = () => {
   // Create a state with all the posts
@@ -18,13 +18,13 @@ const BalanceSheet = () => {
       </Head>
       <main className='min-h-screen'>
         <div className='flex justify-between px-4 pt-4'>
-          <h2 className='text-2xl font-semibold'>Balance Sheet</h2>
+          <h2 className='text-2xl font-semibold'>Balance Sheet (24 Feb 2023)</h2>
           <div></div>
         </div>
-        <TopISCards />
+        <TopBSCards />
         <div className='p-4 grid md:grid-cols-2 grid-cols-1 gap-4'>
-          <Income />
-          <Expenses />          
+          <Assets />
+          <Liabilities />          
         </div>
       </main>
       <div className="flex flex-row items-center justify-between py-10">
