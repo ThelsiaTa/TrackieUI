@@ -42,7 +42,7 @@ const Danger = () => {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-4">
       {showConfirmSignout && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -75,7 +75,7 @@ const Danger = () => {
           </div>
         </div>
       )}      
-      <div className="mt-10 mb-5 pt-4 px-4">
+      <div className="mb-5 px-4">
         <h3 className="text-lg font-semibold">Sign Out Account</h3>
         <p className="text-sm font-normal">Disconnect from your account and return to the login screen.</p>
         <button
