@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Head from "next/head";
 import { collection, deleteDoc, doc, onSnapshot,query, where,} from "firebase/firestore";
 import DeleteAccount from "../../components/DeleteAccount";
+import BankAccount from "../../components/AddBankAccount";
 import { useRouter } from "next/router";
 
 //
@@ -81,7 +82,8 @@ const Setting = () => {
         <title>Trackie</title>
       </Head>
       <div>
-        <h1 className="text-start font-semibold text-5xl mb-10 md:mb-20 text-black px-4">Setting</h1>        
+        <h1 className="text-start font-semibold text-5xl mb-10 md:mb-20 text-black px-4">Setting</h1>
+        <BankAccount />        
         <DeleteAccount />
       </div>
     </div>
