@@ -36,7 +36,7 @@ export const incomeData = [
     },
     {
         id: 6,
-        incomeType: 'Crop Harvesting Services',
+        incomeType: 'Harvesting Work',
         total: 1295.75,
         status: 'Completed',
         paymentMethod: 'Cheque',
@@ -64,7 +64,7 @@ export const incomeData = [
     },
     {
         id: 10,
-        incomeType: 'Infrastructure Development Funding',
+        incomeType: 'Infrastructure Fund',
         total: 218.99,
         status: 'Completed',
         paymentMethod: 'Debit Card',

@@ -20,7 +20,7 @@ export const assetsData = [
     },
     {
         id: 4,
-        assetType: 'Machinery and Equipment',
+        assetType: 'Machinery',
         total: 214148.67,
         status: 'Noncurrent Asset',
     },

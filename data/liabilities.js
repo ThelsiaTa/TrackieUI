@@ -8,7 +8,7 @@ export const liabilitiesData = [
     },
     {
         id: 2,
-        liabilityType: 'Notes Due within One Year',
+        liabilityType: 'Notes Due in a Year',
         total: 65549.33,
         status: 'Current Liabilities',
     },
