@@ -24,7 +24,7 @@ export default function Home() {
             <div>
                 <p className="mt-6 text-base md:text-lg text-slate-600 text-center max-w-3xl mx-auto">Cultivate success with our farmer-focused FinTech: simplify records, predict revenue, and bridge the gap for a prosperous agriculture future!</p>
             </div>               
-            <Link href='/auth/Login' legacyBehavior>
+            <Link href='/addbankaccount' legacyBehavior>
                 <button className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black gap-1">
                     <FaTractor className="fill-current w-5 h-5" />    
                     <p>Get Started</p>          
