@@ -1,16 +1,23 @@
 import Head from 'next/head';
-
-// import image
+import { useState, useEffect } from 'react'; // Import useState and useEffect
 import Header from '../components/Header';
 import TopISCards from '../components/IncomeStatement/TopISCards';
 import Layout from '../components/Layout';
 import Expenses from '../components/IncomeStatement/Expenses';
 import Income from '../components/IncomeStatement/Income';
 
-// income income and expenses
-
 const IncomeStatement = () => {
-  // Create a state with all the posts
+  // State to hold the current date
+  const [currentDate, setCurrentDate] = useState('');
+
+  // Effect to set the current date on component mount
+  useEffect(() => {
+    const today = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString(undefined, options);
+    setCurrentDate(formattedDate);
+  }, []); // Empty dependency array to run the effect only once on mount
+
   return (
     <Layout isWhiteBackground={true}>
       <Head>
@@ -18,12 +25,11 @@ const IncomeStatement = () => {
       </Head>
       <main className='min-h-screen'>
         <div className='flex justify-between px-4 pt-4'>
-          <h2 className='text-2xl font-semibold'>Income Statement (Feb 2023)</h2>
+          <h2 className='text-2xl font-semibold'>Income Statement ({currentDate})</h2>
           <div></div>
         </div>
         <TopISCards />
         <div className='p-4 grid md:grid-cols-2 grid-cols-1 gap-4'>
-          {/*create an edit feature to input manually*/}
           <Income />
           <Expenses />          
         </div>
